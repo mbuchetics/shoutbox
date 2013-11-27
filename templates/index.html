@@ -1,0 +1,67 @@
+<!doctype html>
+<html ng-app="ShoutboxApp">
+    <head>
+        <title>Shoutbox</title>
+        <meta name="description" content="Shoutbox">
+        <meta name="author" content="Matthias Buchetics">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script src="static/vendor/jquery-1.10.2.min.js"></script>
+        <script src="static/vendor/underscore.min.js"></script>
+        <script src="static/vendor/moment.min.js"></script>
+        <script src="static/vendor/angular/angular-file-upload-shim.min.js"></script> 
+        <script src="static/vendor/angular/angular.min.js"></script>
+        <script src="static/vendor/angular/angular-file-upload.min.js"></script> 
+        <script src="static/vendor/angular/angular-sanitize.min.js"></script>
+        <script src="static/js/app.js"></script>
+
+        <link rel="stylesheet" href="static/vendor/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="static/css/styles.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h2>Shoutbox</h2>
+                    <div ng-controller="ShoutboxController">
+
+                        <hr>
+
+                        <div class="row">
+                            <form class="form" ng-submit="addMessage()">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <input type="text" class="form-message form-control" ng-model="messageText" placeholder="add new message here" required>
+                                    </div>
+                                </div>
+                                <div class="form-actions col-md-4">
+                                    <input class="btn btn-primary btn-post" type="submit" value="post">
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="drop-box" ng-file-drop="onFileSelect($files)" ng-show="dropSupported" ng-file-drop-available="dropSupported=true" ng-file-drag-over-class="drop-box-drag">drop files here</div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="btn btn-primary btn-file">upload ... <input type="file" ng-file-select="onFileSelect($files)"></div>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="messages">
+                            <div class="message" ng-repeat="message in messages">
+                                <div class="message-text" ng-bind-html="message.text"></div>
+                                <img class="message-img" src="uploads/{{ message.image }}" ng-if="message.image">
+                                <div class="message-time">{{ message.time }}</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
