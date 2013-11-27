@@ -4,4 +4,8 @@
 2. copy/move `server/config.example.php` to `server/config.php` and enter your database config
 3. run, e.g. `php -S 0.0.0.0:8080`
 
+## Demo
+
+[speckfleck.at/shoutbox/](http://speckfleck.at/shoutbox/)
+
 ![shoutbox screenshot](screenshot.png)
